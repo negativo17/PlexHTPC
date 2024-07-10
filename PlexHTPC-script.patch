@@ -1,0 +1,42 @@
+diff -Naur PlexDesktop.old/Plex.sh PlexDesktop/Plex.sh
+--- PlexDesktop.old/Plex.sh	2024-07-06 23:42:45.307366843 +0200
++++ PlexDesktop/Plex.sh	2024-07-06 23:44:13.924183328 +0200
+@@ -9,36 +9,14 @@
+ export QTDIR=$BASE_DIR
+ export QT_QPA_PLATFORM_PLUGIN_PATH=$BASE_DIR/plugins/platforms:$QT_QPA_PLATFORM_PLUGIN_PATH
+ export FONTCONFIG_PATH=${FONTCONFIG_PATH:-/etc/fonts}
+-
+-# Disable wayland unless the user has set the value before
+-export DISABLE_WAYLAND=${DISABLE_WAYLAND:-1}
+-
+-# In snap: /home/<user>/snap/plex/common
+-# Flatpak: /home/<user>/.var/app/$FLATPAK_ID/data/plex
+-# Native:  /home/<user>/.local/share/plex
+-export PLEX_USERDATA_DIR=${SNAP_USER_COMMON:-${XDG_DATA_HOME:-$HOME/.local/share}/plex}
+-# In snap: /snap/plex/<revision>/resources
+-# Flatpak:  <this file's location>/resources
+-# Native:  <this file's location>/resources
++export PLEX_USERDATA_DIR=${XDG_DATA_HOME:-$HOME/.local/share}/plex
+ export PLEX_RESOURCE_PATH=$BASE_DIR/resources
+-# In snap: /home/<user>/snap/plex/common
+-# Flatpak: /home/<user>/.var/app/$FLATPAK_ID/cache/plex
+-# Native:  /home/<user>/.cache/plex
+-export PLEX_CACHE_DIR=${SNAP_USER_COMMON:-${XDG_CACHE_HOME:-$HOME/.cache/plex}}
+-# In snap: /home/<user>/snap/plex/<revision>
+-# Flatpak: /home/<user>/.var/app/$FLATPAK_ID/data/plex
+-# Native:  /home/<user>/.local/share/plex
++export PLEX_CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache/plex}
+ export PLEX_STORAGE_INI_DIR=$PLEX_USERDATA_DIR
+-# In snap: /home/<user>/snap/plex/common/Logs
+-# Flatpak: /home/<user>/.var/app/$FLATPAK_ID/data/plex/Logs
+-# Native:  /home/<user>/.local/share/plex/Logs
+ export PLEX_LOG_DIR=$PLEX_USERDATA_DIR/Logs
+ 
+ export PLEX_MEDIA_SERVER_RESOURCES=$BASE_DIR/resources
+ 
+-# For MPV to get hardware decoding
+-export LIBVA_DRIVERS_PATH=${SNAP:-${BASE_DIR}}/lib/dri
+-
+ # SESSION_MANAGER often causes issues with Qt so we unset it. Setting PLEX_KEEP_SESSION_MANAGER
+ # will override this behavior.
+ if [ -z "$PLEX_KEEP_SESSION_MANAGER" ]; then
