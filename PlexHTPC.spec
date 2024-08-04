@@ -7,6 +7,7 @@
 %define _build_id_links none
 
 %global appstream_id tv.plex.PlexHTPC
+%global hash 84278903
 
 Name:           PlexHTPC
 Version:        1.64.0.170
@@ -16,7 +17,7 @@ License:        https://www.plex.tv/en-gb/about/privacy-legal/plex-terms-of-serv
 URL:            https://www.plex.tv/
 ExclusiveArch:  x86_64
 
-Source0:        https://artifacts.plex.tv/plex-htpc-stable/%{version}-84278903/linux/PlexHTPC-%{version}-84278903-linux-x86_64.tar.bz2
+Source0:        https://artifacts.plex.tv/plex-htpc-stable/%{version}-%{hash}/linux/PlexHTPC-%{version}-%{hash}-linux-x86_64.tar.bz2
 Source1:        https://raw.githubusercontent.com/flathub/%{appstream_id}/master/%{appstream_id}.desktop
 Source2:        https://raw.githubusercontent.com/flathub/%{appstream_id}/master/%{appstream_id}.png
 Source3:        https://raw.githubusercontent.com/flathub/%{appstream_id}/master/%{appstream_id}.metainfo.xml
