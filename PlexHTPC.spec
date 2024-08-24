@@ -7,10 +7,10 @@
 %define _build_id_links none
 
 %global appstream_id tv.plex.PlexHTPC
-%global hash 38ac5fdc
+%global hash 6343cfaf
 
 Name:           PlexHTPC
-Version:        1.65.4.206
+Version:        1.66.1.215
 Release:        1%{?dist}
 Summary:        Plex HTPC client for the big screen
 License:        https://www.plex.tv/en-gb/about/privacy-legal/plex-terms-of-service/
@@ -81,6 +81,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id
 %{_libdir}/%{name}
 
 %changelog
+* Sat Aug 24 2024 Simone Caronni <negativo17@gmail.com> - 1.66.1.215-1
+- Update to version 1.66.1.215-6343cfaf.
+
 * Sun Aug 04 2024 Simone Caronni <negativo17@gmail.com> - 1.65.4.206-1
 - Update to version 1.65.4.206-38ac5fdc.
 
