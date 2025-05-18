@@ -21,7 +21,8 @@ Source0:        https://artifacts.plex.tv/plex-htpc-stable/%{version}-%{hash}/li
 Source1:        https://raw.githubusercontent.com/flathub/%{appstream_id}/master/%{appstream_id}.desktop
 Source2:        https://raw.githubusercontent.com/flathub/%{appstream_id}/master/%{appstream_id}.png
 Source3:        https://raw.githubusercontent.com/flathub/%{appstream_id}/master/%{appstream_id}.metainfo.xml
-Patch0:         %{name}-script.patch
+# Replacement for bundled Plex.sh:
+Source4:        PlexHTPC
 
 BuildRequires:  chrpath
 BuildRequires:  desktop-file-utils
@@ -40,7 +41,7 @@ engine.
 %prep
 %autosetup -p1 -c
 
-rm -f lib/libdrm* lib/libEGL* lib/libigdgmm* lib/libpciaccess* lib/libva*
+rm -f lib/libdrm* lib/libEGL* lib/libigdgmm* lib/libpciaccess* lib/libva* Plex.sh
 rm -fr lib/dri
 
 chmod +x lib/lib*.so.*
@@ -59,8 +60,10 @@ find . -name "*.conf" -exec chmod 644 {} \;
 mkdir -p %{buildroot}%{_libdir}/%{name}
 cp -fra * %{buildroot}%{_libdir}/%{name}
 
+install -m 0755 %{SOURCE4} %{buildroot}%{_libdir}/%{name}/
+
 mkdir -p %{buildroot}%{_bindir}
-ln -sf ../%{_lib}/%{name}/Plex.sh %{buildroot}%{_bindir}/PlexHTPC
+ln -sf ../%{_lib}/%{name}/PlexHTPC %{buildroot}%{_bindir}/PlexHTPC
 
 install -m 0644 -p -D %{SOURCE1} %{buildroot}%{_datadir}/applications/%{appstream_id}.desktop
 sed -i -e 's/Exec=Plex/Exec=PlexHTPC/g' \
